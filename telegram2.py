@@ -1,7 +1,10 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import requests
 import datetime
 
-#url = "https://api.telegram.org/bot1275350628:AAGG42iFy0tcynB9oiv4bCwSdQcR-LZwCAE/"
+#url = "https://api.telegram.org/bot/"
 
 class BotHandler:
     def __init__(self, token):
@@ -31,7 +34,8 @@ class BotHandler:
 
         return last_update
 
-send_mess(chat_id, 'Your message goes here')
+#send_mess(chat_id, 'Your message goes here')
+token = '1275350628:AAGG42iFy0tcynB9oiv4bCwSdQcR-LZwCAE'
 
 greet_bot = BotHandler(token)
 greetings = ('здравствуй', 'привет', 'ку', 'здорово')
@@ -52,13 +56,13 @@ def main():
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
 
-        if last_chat_text.lower() in greetings and today = now.day and 6 <= hour < 12:
+        if last_chat_text.lower() in greetings and today == now.day and 6 <= hour < 12:
             greet_bot.send_message(last_chat_id, 'Доброе утро, {}'.format(lsat_chat_name))
             today += 1
-        elif last_chat_text.lower() in greetings and today = now.day and 12 <= hour < 17:
+        elif last_chat_text.lower() in greetings and today == now.day and 12 <= hour < 17:
             greet_bot.send_message(last_chat_id, 'Добрый день, {}'.fromat(last_chat_name))
             today += 1
-        elif last_chat_text.lower() in greeting and today = now.day and 17 <= hour < 23:
+        elif last_chat_text.lower() in greeting and today == now.day and 17 <= hour < 23:
             greet_bot.send_message(last_chat_id, 'Добрый вечер, {}'.format(last_chat_name))
             today += 1
 
