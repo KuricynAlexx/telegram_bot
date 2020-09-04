@@ -4,7 +4,7 @@
 import requests
 import datetime
 
-#url = "https://api.telegram.org/bot/"
+# url = "https://api.telegram.org/bot{token}/"
 
 class BotHandler:
     def __init__(self, token):
@@ -16,7 +16,7 @@ class BotHandler:
         params = {'timeout': timeout, 'offset': offset}
         response = requests.get(self.api_url + method, data = params)
         result_json = response.json()['result']
-        return response_json
+        return result_json
 
     def send_message(chat, chat_id, text):
         params = {'chat_id': chat, 'text': text}
@@ -30,7 +30,7 @@ class BotHandler:
         if len(get_result) > 0:
             last_update = get_result[-1]
         else:
-            last_update = get_result[len(get_result)]
+            last_update = get_result # here should be get_result]len(get_result)] but it may cause an error
 
         return last_update
 
@@ -62,7 +62,7 @@ def main():
         elif last_chat_text.lower() in greetings and today == now.day and 12 <= hour < 17:
             greet_bot.send_message(last_chat_id, 'Добрый день, {}'.fromat(last_chat_name))
             today += 1
-        elif last_chat_text.lower() in greeting and today == now.day and 17 <= hour < 23:
+        elif last_chat_text.lower() in greetings and today == now.day and 17 <= hour < 23:
             greet_bot.send_message(last_chat_id, 'Добрый вечер, {}'.format(last_chat_name))
             today += 1
 
